@@ -1,5 +1,6 @@
 use std::fs::File;
 use std::io::{BufRead, BufReader};
+use clap::builder::Str;
 
 pub fn extract_commands_from_config(config_path: &str) -> Vec<String> {
     let file = File::open(config_path).unwrap();
@@ -23,7 +24,8 @@ pub fn extract_commands_from_config(config_path: &str) -> Vec<String> {
 }
 
 pub fn find_config_file(matches: &clap::ArgMatches, args: &[String]) -> String {
-    let config_path = matches.value_of("config").unwrap_or("rcz.conf");
+    let config_path: String = matches.get_one::<String>("config").expect("").to_string();
+    // matches.get_raw("config").unwrap().is_present();
     let command_name = &args[0];
 
     let file = File::open(config_path).unwrap();

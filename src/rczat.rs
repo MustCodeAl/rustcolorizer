@@ -9,7 +9,8 @@ use crate::data::{CgrcAttrib, CgrcColorItem, CgrcConf, CgrcConfItem, COLORS_BACK
 // use data::{CgrcAttrib, CgrcConf, CgrcConfItem, CgrcColorItem, COLORS_ATTRS, COLORS_BACK, COLORS_FORG};
 
 pub fn process_rczat(matches: &ArgMatches, _args: &[String]) {
-    let main_conf_file = matches.get_one::<String>("config").unwrap_or(&String::new());
+    let binding = String::new();
+    let main_conf_file = matches.get_one::<String>("config").unwrap_or(&binding);
     if main_conf_file.is_empty() {
         eprintln!("No main configuration file specified.");
         exit(1);
